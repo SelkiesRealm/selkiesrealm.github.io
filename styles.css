@@ -1,5 +1,30 @@
-body {
-    background: #f5f0ff;
-    color: #6f63a8;
-    font-family: Arial, sans-serif;
+body{
+    background:#f7f2ff;
+    font-family:Arial,sans-serif;
+    text-align:center;
+    color:#444;
+    padding-top:80px;
+}
+
+h1{
+    color:#7c6acb;
+}
+
+.nav{
+    margin-top:40px;
+}
+
+.nav a{
+    display:inline-block;
+    margin:10px;
+    padding:12px 24px;
+    background:white;
+    border-radius:20px;
+    text-decoration:none;
+    color:#7c6acb;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.nav a:hover{
+    transform:translateY(-2px);
 }
