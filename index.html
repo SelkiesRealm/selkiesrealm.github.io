@@ -25,6 +25,7 @@
       <div class="desktop-nav">
         <a href="pages/about.html">Enter the Realm</a>
         <a href="pages/gallery.html">Forms &amp; References</a>
+        <a href="#soundtrack">Realm Soundtrack</a>
         <a href="#magic">Magic &amp; Creations</a>
         <a href="pages/commissions.html">Commissions</a>
         <a href="pages/links.html">Realms Beyond</a>
@@ -82,6 +83,116 @@
           original characters, artwork, stories, projects, and all the magical
           things I create along the way.
         </p>
+      </div>
+    </section>
+
+    <section class="soundtrack-section" id="soundtrack">
+      <div class="section-inner">
+        <div class="section-heading soundtrack-heading">
+          <span>✦</span>
+          <h2>Realm Soundtrack</h2>
+          <span>✦</span>
+        </div>
+        <p class="soundtrack-intro">
+          Original songs from Selkie's Realm. Choose a track and let a little
+          piece of the realm play while you wander.
+        </p>
+
+        <div class="soundtrack-player theme-sky" id="soundtrack-player">
+          <span class="soundtrack-sparkle soundtrack-sparkle-1">✦</span>
+          <span class="soundtrack-sparkle soundtrack-sparkle-2">✦</span>
+          <span class="soundtrack-sparkle soundtrack-sparkle-3">✦</span>
+
+          <div class="now-playing">
+            <div class="soundtrack-orb" aria-hidden="true">
+              <span class="orb-ring orb-ring-one"></span>
+              <span class="orb-ring orb-ring-two"></span>
+              <span class="orb-star">✦</span>
+            </div>
+
+            <p class="now-playing-label">✦ Now Playing ✦</p>
+            <h3 id="track-title">Welcome to My Little Sky</h3>
+            <p class="track-artist" id="track-artist">Selkie · Realm Soundtrack</p>
+
+            <div class="progress-wrap">
+              <span class="time-label" id="current-time">0:00</span>
+              <input
+                class="progress-slider"
+                id="track-progress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+                aria-label="Track progress"
+              >
+              <span class="time-label" id="track-duration">4:38</span>
+            </div>
+
+            <div class="player-controls">
+              <button class="control-button" id="previous-track" type="button" aria-label="Previous track">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 20 9 12l10-8v16ZM5 19V5"/></svg>
+              </button>
+
+              <button class="play-button" id="play-pause" type="button" aria-label="Play Welcome to My Little Sky">
+                <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
+                <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
+              </button>
+
+              <button class="control-button" id="next-track" type="button" aria-label="Next track">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 4 10 8-10 8V4ZM19 5v14"/></svg>
+              </button>
+            </div>
+
+            <div class="volume-control">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5ZM15 9a4 4 0 0 1 0 6M17.5 6.5a8 8 0 0 1 0 11"/></svg>
+              <input
+                id="volume-slider"
+                type="range"
+                min="0"
+                max="1"
+                value="0.8"
+                step="0.01"
+                aria-label="Volume"
+              >
+            </div>
+          </div>
+
+          <div class="track-list" aria-label="Realm soundtrack playlist">
+            <p class="track-list-label">Choose a song</p>
+
+            <button class="track-item is-active" type="button" data-track="0">
+              <span class="track-number">01</span>
+              <span class="track-copy">
+                <strong>Welcome to My Little Sky</strong>
+                <small>Original realm theme</small>
+              </span>
+              <span class="track-length">4:38</span>
+            </button>
+
+            <button class="track-item" type="button" data-track="1">
+              <span class="track-number">02</span>
+              <span class="track-copy">
+                <strong>Every Shape Is Me</strong>
+                <small>Shifter identity song</small>
+              </span>
+              <span class="track-length">4:09</span>
+            </button>
+
+            <button class="track-item" type="button" data-track="2">
+              <span class="track-number">03</span>
+              <span class="track-copy">
+                <strong>CRYSTAL ATTACK</strong>
+                <small>Crystal-powered battle theme</small>
+              </span>
+              <span class="track-length">3:39</span>
+            </button>
+
+            <p class="soundtrack-note">Music begins only when you press play.</p>
+          </div>
+        </div>
+
+        <audio id="realm-audio" preload="metadata"></audio>
       </div>
     </section>
 
@@ -154,7 +265,7 @@
             </div>
             <p>
               This part of the realm is still taking shape. Soon it will be
-              filled with artwork, original characters, stories, music, games,
+              filled with artwork, original characters, stories, games,
               and other magical projects.
             </p>
             <a class="magic-pill" href="#magic">
@@ -192,6 +303,129 @@
         menuButton.setAttribute('aria-expanded', 'false');
       });
     });
+
+    const tracks = [
+      {
+        title: 'Welcome to My Little Sky',
+        artist: 'Selkie · Realm Soundtrack',
+        src: 'assets/music/welcome-to-my-little-sky.mp3',
+        theme: 'theme-sky'
+      },
+      {
+        title: 'Every Shape Is Me',
+        artist: 'Selkie · Realm Soundtrack',
+        src: 'assets/music/every-shape-is-me.mp3',
+        theme: 'theme-shape'
+      },
+      {
+        title: 'CRYSTAL ATTACK',
+        artist: 'Selkie · Realm Soundtrack',
+        src: 'assets/music/crystal-attack.mp3',
+        theme: 'theme-crystal'
+      }
+    ];
+
+    const audio = document.getElementById('realm-audio');
+    const player = document.getElementById('soundtrack-player');
+    const title = document.getElementById('track-title');
+    const artist = document.getElementById('track-artist');
+    const playPause = document.getElementById('play-pause');
+    const previousTrack = document.getElementById('previous-track');
+    const nextTrack = document.getElementById('next-track');
+    const progress = document.getElementById('track-progress');
+    const currentTimeLabel = document.getElementById('current-time');
+    const durationLabel = document.getElementById('track-duration');
+    const volume = document.getElementById('volume-slider');
+    const trackButtons = Array.from(document.querySelectorAll('.track-item'));
+
+    let currentTrack = 0;
+
+    const formatTime = (seconds) => {
+      if (!Number.isFinite(seconds)) return '0:00';
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, '0');
+      return `${minutes}:${remainingSeconds}`;
+    };
+
+    const loadTrack = (index, shouldPlay = false) => {
+      currentTrack = (index + tracks.length) % tracks.length;
+      const track = tracks[currentTrack];
+
+      audio.src = track.src;
+      title.textContent = track.title;
+      artist.textContent = track.artist;
+      playPause.setAttribute('aria-label', `Play ${track.title}`);
+
+      player.classList.remove('theme-sky', 'theme-shape', 'theme-crystal');
+      player.classList.add(track.theme);
+
+      trackButtons.forEach((button, buttonIndex) => {
+        const isActive = buttonIndex === currentTrack;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      progress.value = 0;
+      currentTimeLabel.textContent = '0:00';
+
+      if (shouldPlay) {
+        audio.play().catch(() => {
+          playPause.classList.remove('is-playing');
+        });
+      }
+    };
+
+    const updatePlayState = () => {
+      const isPlaying = !audio.paused;
+      playPause.classList.toggle('is-playing', isPlaying);
+      playPause.setAttribute(
+        'aria-label',
+        `${isPlaying ? 'Pause' : 'Play'} ${tracks[currentTrack].title}`
+      );
+    };
+
+    playPause.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    previousTrack.addEventListener('click', () => loadTrack(currentTrack - 1, true));
+    nextTrack.addEventListener('click', () => loadTrack(currentTrack + 1, true));
+
+    trackButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        loadTrack(Number(button.dataset.track), true);
+      });
+    });
+
+    audio.addEventListener('play', updatePlayState);
+    audio.addEventListener('pause', updatePlayState);
+    audio.addEventListener('ended', () => loadTrack(currentTrack + 1, true));
+
+    audio.addEventListener('loadedmetadata', () => {
+      durationLabel.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (!audio.duration) return;
+      progress.value = (audio.currentTime / audio.duration) * 100;
+      currentTimeLabel.textContent = formatTime(audio.currentTime);
+    });
+
+    progress.addEventListener('input', () => {
+      if (!audio.duration) return;
+      audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+    });
+
+    volume.addEventListener('input', () => {
+      audio.volume = Number(volume.value);
+    });
+
+    audio.volume = Number(volume.value);
+    loadTrack(0);
   </script>
 </body>
 </html>
