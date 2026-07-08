@@ -241,7 +241,7 @@
   const routeCache = new Map();
   const validRoutes = new Set(['about', 'gallery', 'commissions', 'links']);
   const routeTitles = {
-    about: "About Selkie ✦ Selkie's Realm",
+    about: "Enter the Realm ✦ Selkie's Realm",
     gallery: "Forms & References ✦ Selkie's Realm",
     commissions: "Commissions ✦ Selkie's Realm",
     links: "Realms Beyond ✦ Selkie's Realm"
