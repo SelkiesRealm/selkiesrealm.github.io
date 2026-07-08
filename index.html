@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The official home of Selkie the Shifter — art, characters, creations, commissions, and more.">
+  <meta name="author" content="Selkie">
+  <title>Selkie's Realm ✦</title>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="site-logo" href="index.html">
+        <span class="gold-sparkle">✦</span>
+        <span>Selkie's Realm</span>
+        <span class="gold-sparkle">✦</span>
+      </a>
+
+      <div class="desktop-nav">
+        <a href="index.html?page=about">Enter the Realm</a>
+        <a href="index.html?page=gallery">Forms &amp; References</a>
+        <a href="index.html#soundtrack">Realm Soundtrack</a>
+        <a href="index.html#magic">Magic &amp; Creations</a>
+        <a href="index.html?page=commissions">Commissions</a>
+        <a href="index.html?page=links">Realms Beyond</a>
+      </div>
+
+      <button class="menu-button" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg class="close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </nav>
+
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index.html?page=about">Enter the Realm</a>
+      <a href="index.html?page=gallery">Forms &amp; References</a>
+      <a href="index.html#soundtrack">Realm Soundtrack</a>
+      <a href="index.html#magic">Magic &amp; Creations</a>
+      <a href="index.html?page=commissions">Commissions</a>
+      <a href="index.html?page=links">Realms Beyond</a>
+    </div>
+  </header>
+
+  <main id="page-shell">
+    <div class="route-view is-active" id="home-view" data-route="home">
+    <section class="hero-wrap">
+      <div class="hero">
+        <span class="hero-sparkle sparkle-1">✦</span>
+        <span class="hero-sparkle sparkle-2">✦</span>
+        <span class="hero-sparkle sparkle-3">✦</span>
+        <span class="hero-sparkle sparkle-4">✦</span>
+
+        <div class="hero-content">
+          <p class="hero-kicker">✦ Welcome, Traveler ✦</p>
+          <h1 class="hero-title">Welcome to</h1>
+          <h1 class="hero-title hero-title-accent">Selkie's Realm</h1>
+          <p class="hero-tagline">The official home of Selkie the Shifter.</p>
+          <p class="hero-description">
+            A little magical realm filled with characters, artwork, stories,
+            creations, and everything I love to make.
+          </p>
+          <div class="hero-buttons">
+            <a class="button button-primary" href="#realm">Enter the Realm</a>
+            <a class="button button-outline" href="index.html?page=gallery">Meet the Residents</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="section-inner about-inner">
+        <div class="section-heading">
+          <span>✦</span>
+          <h2>A Little Realm of My Own</h2>
+          <span>✦</span>
+        </div>
+        <p>
+          Selkie's Realm is my little corner of the internet — a home for my
+          original characters, artwork, stories, projects, and all the magical
+          things I create along the way.
+        </p>
+      </div>
+    </section>
+
+    <section class="soundtrack-section" id="soundtrack">
+      <div class="section-inner">
+        <div class="section-heading soundtrack-heading">
+          <span>✦</span>
+          <h2>Realm Soundtrack</h2>
+          <span>✦</span>
+        </div>
+        <p class="soundtrack-intro">
+          Original songs from Selkie's Realm. Choose a track and let a little
+          piece of the realm play while you wander.
+        </p>
+
+        <div class="soundtrack-player theme-sky" id="soundtrack-player">
+          <span class="soundtrack-sparkle soundtrack-sparkle-1">✦</span>
+          <span class="soundtrack-sparkle soundtrack-sparkle-2">✦</span>
+          <span class="soundtrack-sparkle soundtrack-sparkle-3">✦</span>
+
+          <div class="now-playing">
+            <div class="soundtrack-orb" aria-hidden="true">
+              <span class="orb-ring orb-ring-one"></span>
+              <span class="orb-ring orb-ring-two"></span>
+              <span class="orb-star">✦</span>
+            </div>
+
+            <p class="now-playing-label">✦ Now Playing ✦</p>
+            <h3 id="track-title">Welcome to My Little Sky</h3>
+            <p class="track-artist" id="track-artist">Selkie · Realm Soundtrack</p>
+
+            <div class="progress-wrap">
+              <span class="time-label" id="current-time">0:00</span>
+              <input
+                class="progress-slider"
+                id="track-progress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+                aria-label="Track progress"
+              >
+              <span class="time-label" id="track-duration">4:38</span>
+            </div>
+
+            <div class="player-controls">
+              <button class="control-button" id="previous-track" type="button" aria-label="Previous track">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 20 9 12l10-8v16ZM5 19V5"/></svg>
+              </button>
+
+              <button class="play-button" id="play-pause" type="button" aria-label="Play Welcome to My Little Sky">
+                <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
+                <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
+              </button>
+
+              <button class="control-button" id="next-track" type="button" aria-label="Next track">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 4 10 8-10 8V4ZM19 5v14"/></svg>
+              </button>
+            </div>
+
+            <div class="volume-control">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5ZM15 9a4 4 0 0 1 0 6M17.5 6.5a8 8 0 0 1 0 11"/></svg>
+              <input
+                id="volume-slider"
+                type="range"
+                min="0"
+                max="1"
+                value="0.8"
+                step="0.01"
+                aria-label="Volume"
+              >
+            </div>
+          </div>
+
+          <div class="track-list" aria-label="Realm soundtrack playlist">
+            <p class="track-list-label">Choose a song</p>
+
+            <button class="track-item is-active" type="button" data-track="0">
+              <span class="track-number">01</span>
+              <span class="track-copy">
+                <strong>Welcome to My Little Sky</strong>
+                <small>Original realm theme</small>
+              </span>
+              <span class="track-length">4:38</span>
+            </button>
+
+            <button class="track-item" type="button" data-track="1">
+              <span class="track-number">02</span>
+              <span class="track-copy">
+                <strong>Every Shape Is Me</strong>
+                <small>Shifter identity song</small>
+              </span>
+              <span class="track-length">4:09</span>
+            </button>
+
+            <button class="track-item" type="button" data-track="2">
+              <span class="track-number">03</span>
+              <span class="track-copy">
+                <strong>CRYSTAL ATTACK</strong>
+                <small>Crystal-powered battle theme</small>
+              </span>
+              <span class="track-length">3:39</span>
+            </button>
+
+            <p class="soundtrack-note">Music begins only when you press play.</p>
+          </div>
+        </div>
+
+        <audio id="realm-audio" preload="metadata"></audio>
+      </div>
+    </section>
+
+    <section class="explore-section" id="realm">
+      <div class="section-inner">
+        <div class="section-heading explore-heading">
+          <span>✦</span>
+          <h2>Explore the Realm</h2>
+          <span>✦</span>
+        </div>
+
+        <div class="explore-grid explore-grid-three">
+          <a class="explore-card" href="index.html?page=about">
+            <div class="card-icon icon-purple">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V9l3-3 4 4 4-4 3 3v12M9 21v-5h6v5M8 6V3M16 6V3"/></svg>
+            </div>
+            <h3>Enter Selkie's Realm</h3>
+            <p>Meet Selkie and discover the world behind the Shifter.</p>
+          </a>
+
+          <a class="explore-card" href="index.html?page=gallery">
+            <div class="card-icon icon-blue">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21.5zM20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5a2.5 2.5 0 0 1 2.5 2.5z"/></svg>
+            </div>
+            <h3>Forms &amp; References</h3>
+            <p>Character designs, reference sheets, forms, and realm residents.</p>
+          </a>
+
+          <a class="explore-card" href="index.html#magic">
+            <div class="card-icon icon-gold">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l5 5L8 21H3v-5zM14 5l5 5M6 3v4M4 5h4M18 16v5M15.5 18.5h5"/></svg>
+            </div>
+            <h3>Magic &amp; Creations</h3>
+            <p>Artwork, stories, music, projects, and things made with a little magic.</p>
+          </a>
+        </div>
+
+        <div class="explore-grid explore-grid-two">
+          <a class="explore-card" href="index.html?page=commissions">
+            <div class="card-icon icon-pink">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4z"/></svg>
+            </div>
+            <h3>Summon a Commission</h3>
+            <p>Commission information, examples, and availability.</p>
+          </a>
+
+          <a class="explore-card" href="index.html?page=links">
+            <div class="card-icon icon-mint">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </div>
+            <h3>Realms Beyond</h3>
+            <p>Find me across the other corners of the internet.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="magic-section" id="magic">
+      <div class="section-inner">
+        <div class="magic-card">
+          <span class="magic-sparkle magic-sparkle-1">✦</span>
+          <span class="magic-sparkle magic-sparkle-2">✦</span>
+          <span class="magic-sparkle magic-sparkle-3">✦</span>
+
+          <div class="magic-content">
+            <div class="section-heading">
+              <span>✦</span>
+              <h2>Magic &amp; Creations</h2>
+              <span>✦</span>
+            </div>
+            <p>
+              This part of the realm is still taking shape. Soon it will be
+              filled with artwork, original characters, stories, games,
+              and other magical projects.
+            </p>
+            <a class="magic-pill" href="index.html#magic">
+              <span>✦</span>
+              More magic is gathering...
+              <span>✦</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <div class="route-view page-route" id="page-view" data-route="page" hidden>
+      <div class="page-loading">✦ Gathering this part of the realm... ✦</div>
+    </div>
+  </main>
+
+
+  <aside class="persistent-player" id="persistent-player" aria-label="Persistent realm soundtrack player" aria-hidden="true">
+    <div class="persistent-player-copy">
+      <span class="persistent-player-label">✦ Realm Soundtrack</span>
+      <strong id="mini-track-title">Welcome to My Little Sky</strong>
+    </div>
+
+    <div class="persistent-player-controls">
+      <button class="mini-control-button" id="mini-play-pause" type="button" aria-label="Play current track">
+        <svg class="mini-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
+        <svg class="mini-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
+      </button>
+      <button class="mini-control-button mini-next-button" id="mini-next-track" type="button" aria-label="Next track">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 4 10 8-10 8V4ZM19 5v14"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-title">✦ Made with magic by Selkie ✦</p>
+      <p class="footer-subtitle">Welcome to my little realm.</p>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>
