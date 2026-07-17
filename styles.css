@@ -1928,3 +1928,131 @@ span:last-child {
   }
 
 }
+
+/* ========================================
+   PORTFOLIO PAGE
+======================================== */
+
+.portfolio-page {
+  width: 100%;
+}
+
+.portfolio-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(56px, 8vw, 92px) 24px;
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  background: var(--gradient-hero);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.portfolio-kicker {
+  margin: 0 0 18px;
+  color: hsl(262 52% 47% / 0.62);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.portfolio-hero h1 {
+  margin: 0;
+  color: var(--foreground);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(4rem, 8vw, 6rem);
+  font-weight: 600;
+  line-height: 0.95;
+}
+
+.portfolio-hero p:not(.portfolio-kicker) {
+  width: min(620px, 100%);
+  margin: 24px auto 0;
+  color: hsl(262 42% 22% / 0.65);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.portfolio-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.portfolio-card {
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: hsl(0 0% 100% / 0.78);
+  box-shadow: var(--shadow-card);
+}
+
+.portfolio-card-icon {
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 18px;
+  place-items: center;
+  color: var(--realm-gold);
+  border: 1px solid hsl(270 25% 88% / 0.9);
+  border-radius: 50%;
+  background: hsl(0 0% 100% / 0.65);
+  font-size: 1.25rem;
+}
+
+.portfolio-card h2 {
+  margin: 0 0 10px;
+  color: var(--foreground);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.portfolio-card p {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.portfolio-sparkle {
+  position: absolute;
+  color: var(--realm-gold);
+  pointer-events: none;
+  user-select: none;
+}
+
+.portfolio-sparkle-one {
+  top: 34px;
+  left: 42px;
+  font-size: 1.7rem;
+  animation: float 5s ease-in-out infinite;
+}
+
+.portfolio-sparkle-two {
+  top: 36%;
+  right: 46px;
+  font-size: 1rem;
+  opacity: 0.7;
+  animation: float 6s ease-in-out 0.8s infinite;
+}
+
+.portfolio-sparkle-three {
+  right: 22%;
+  bottom: 38px;
+  font-size: 1.45rem;
+  opacity: 0.72;
+  animation: float 4s ease-in-out 1.5s infinite;
+}
+
+@media (max-width: 767px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-hero {
+    padding-inline: 20px;
+  }
+}
