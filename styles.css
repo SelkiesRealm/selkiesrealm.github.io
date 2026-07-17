@@ -2056,3 +2056,82 @@ span:last-child {
     padding-inline: 20px;
   }
 }
+/* ========================================
+   FORMS & REFERENCES PAGE
+======================================== */
+
+.references-page {
+  background:
+    radial-gradient(
+      circle at 18% 16%,
+      hsl(330 80% 94% / 0.9),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 86% 80%,
+      hsl(162 55% 90% / 0.72),
+      transparent 38%
+    ),
+    var(--gradient-hero);
+}
+
+.reference-list {
+  width: min(720px, 100%);
+  margin: 36px auto 0;
+  display: grid;
+  gap: 14px;
+}
+
+.reference-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "icon title"
+    "icon text";
+  gap: 2px 14px;
+
+  padding: 18px 22px;
+
+  border: 1px solid hsl(270 25% 88% / 0.9);
+  border-radius: 18px;
+
+  background: hsl(0 0% 100% / 0.62);
+
+  color: var(--foreground);
+  text-align: left;
+  text-decoration: none;
+
+  box-shadow: var(--shadow-card);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.reference-card:hover {
+  transform: translateY(-3px);
+  border-color: hsl(262 52% 47% / 0.28);
+  box-shadow: var(--shadow-soft);
+}
+
+.reference-card span {
+  grid-area: icon;
+  color: var(--realm-gold);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.reference-card strong {
+  grid-area: title;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.reference-card small {
+  grid-area: text;
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
