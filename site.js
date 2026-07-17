@@ -241,12 +241,12 @@
   const routeCache = new Map();
   const validRoutes = new Set(['about', 'gallery', 'portfolio', 'commissions', 'links']);
   const routeTitles = {
-    about: "Enter the Realm ✦ Selkie's Realm",
-    gallery: "Forms & References ✦ Selkie's Realm",
-    portfolio: "Portfolio ✦ Selkie's Realm",
-    commissions: "Commissions ✦ Selkie's Realm",
-    links: "Realms Beyond ✦ Selkie's Realm"
-  };
+  about: "Enter the Realm ✦ Selkie's Realm",
+  gallery: "Forms & References ✦ Selkie's Realm",
+  portfolio: "Portfolio ✦ Selkie's Realm",
+  commissions: "Commissions ✦ Selkie's Realm",
+  links: "Realms Beyond ✦ Selkie's Realm"
+};
 
   const showHome = (hash = '') => {
     if (!homeView || !pageView) return;
