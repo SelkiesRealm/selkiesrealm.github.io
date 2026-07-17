@@ -1,326 +1,361 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The official home of Selkie the Shifter — art, characters, creations, commissions, and more.">
-  <meta name="author" content="Selkie">
-  <title>Selkie's Realm ✦</title>
+(() => {
+  const menuButton = document.querySelector('.menu-button');
+  const mobileNav = document.querySelector('.mobile-nav');
 
-  <link rel="icon" href="favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="site-header">
-    <nav class="navbar" aria-label="Main navigation">
-      <a class="site-logo" href="index.html">
-        <span class="gold-sparkle">✦</span>
-        <span>Selkie's Realm</span>
-        <span class="gold-sparkle">✦</span>
-      </a>
+  if (menuButton && mobileNav) {
+    menuButton.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('is-open');
+      menuButton.classList.toggle('is-open', isOpen);
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
 
-      <div class="desktop-nav">
-        <a href="index.html?page=about">Enter the Realm</a>
-        <a href="index.html?page=gallery">Forms &amp; References</a>
-        <a href="index.html?page=portfolio">Portfolio</a>
-        <a href="index.html#soundtrack">Realm Soundtrack</a>
-        <a href="index.html#magic">Magic &amp; Creations</a>
-        <a href="index.html?page=commissions">Commissions</a>
-        <a href="index.html?page=links">Realms Beyond</a>
-      </div>
+    mobileNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('is-open');
+        menuButton.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
-      <button class="menu-button" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
-        <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg class="close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </nav>
+  const tracks = [
+    {
+      title: 'Welcome to My Little Sky',
+      artist: 'Selkie · Realm Soundtrack',
+      src: 'assets/music/welcome-to-my-little-sky.mp3',
+      theme: 'theme-sky'
+    },
+    {
+      title: 'Every Shape Is Me',
+      artist: 'Selkie · Realm Soundtrack',
+      src: 'assets/music/every-shape-is-me.mp3',
+      theme: 'theme-shape'
+    },
+    {
+      title: 'CRYSTAL ATTACK',
+      artist: 'Selkie · Realm Soundtrack',
+      src: 'assets/music/crystal-attack.mp3',
+      theme: 'theme-crystal'
+    }
+  ];
 
-    <div class="mobile-nav" id="mobile-nav">
-      <a href="index.html?page=about">Enter the Realm</a>
-      <a href="index.html?page=gallery">Forms &amp; References</a>
-      <a href="index.html?page=portfolio">Portfolio</a>
-      <a href="index.html#soundtrack">Realm Soundtrack</a>
-      <a href="index.html#magic">Magic &amp; Creations</a>
-      <a href="index.html?page=commissions">Commissions</a>
-      <a href="index.html?page=links">Realms Beyond</a>
-    </div>
-  </header>
+  const audio = document.getElementById('realm-audio');
+  const player = document.getElementById('soundtrack-player');
+  const title = document.getElementById('track-title');
+  const artist = document.getElementById('track-artist');
+  const playPause = document.getElementById('play-pause');
+  const previousTrack = document.getElementById('previous-track');
+  const nextTrack = document.getElementById('next-track');
+  const progress = document.getElementById('track-progress');
+  const currentTimeLabel = document.getElementById('current-time');
+  const durationLabel = document.getElementById('track-duration');
+  const volume = document.getElementById('volume-slider');
+  const trackButtons = Array.from(document.querySelectorAll('.track-item'));
 
-  <main id="page-shell">
-    <div class="route-view is-active" id="home-view" data-route="home">
-    <section class="hero-wrap">
-      <div class="hero">
-        <span class="hero-sparkle sparkle-1">✦</span>
-        <span class="hero-sparkle sparkle-2">✦</span>
-        <span class="hero-sparkle sparkle-3">✦</span>
-        <span class="hero-sparkle sparkle-4">✦</span>
+  const miniPlayer = document.getElementById('persistent-player');
+  const miniTitle = document.getElementById('mini-track-title');
+  const miniPlayPause = document.getElementById('mini-play-pause');
+  const miniNextTrack = document.getElementById('mini-next-track');
 
-        <div class="hero-content">
-          <p class="hero-kicker">✦ Welcome, Traveler ✦</p>
-          <h1 class="hero-title">Welcome to</h1>
-          <h1 class="hero-title hero-title-accent">Selkie's Realm</h1>
-          <p class="hero-tagline">The official home of Selkie the Shifter.</p>
-          <p class="hero-description">
-            A little magical realm filled with characters, artwork, stories,
-            creations, and everything I love to make.
-          </p>
-          <div class="hero-buttons">
-            <a class="button button-primary" href="index.html?page=about">Enter the Realm</a>
-            <a class="button button-outline" href="index.html?page=gallery">Meet the Residents</a>
-          </div>
-        </div>
-      </div>
-    </section>
+  let currentTrack = 0;
+  let playerHasStarted = false;
+  const playerStateKey = 'selkie-realm-player-v2';
 
-    <section class="about-section">
-      <div class="section-inner about-inner">
-        <div class="section-heading">
-          <span>✦</span>
-          <h2>A Little Realm of My Own</h2>
-          <span>✦</span>
-        </div>
-        <p>
-          Selkie's Realm is my little corner of the internet — a home for my
-          original characters, artwork, stories, projects, and all the magical
-          things I create along the way.
-        </p>
-      </div>
-    </section>
+  const formatTime = (seconds) => {
+    if (!Number.isFinite(seconds)) return '0:00';
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, '0');
+    return `${minutes}:${remainingSeconds}`;
+  };
 
-    <section class="soundtrack-section" id="soundtrack">
-      <div class="section-inner">
-        <div class="section-heading soundtrack-heading">
-          <span>✦</span>
-          <h2>Realm Soundtrack</h2>
-          <span>✦</span>
-        </div>
-        <p class="soundtrack-intro">
-          Original songs from Selkie's Realm. Choose a track and let a little
-          piece of the realm play while you wander.
-        </p>
+  const revealMiniPlayer = () => {
+    if (!miniPlayer) return;
+    miniPlayer.classList.add('is-visible');
+    miniPlayer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('music-active');
+  };
 
-        <div class="soundtrack-player theme-sky" id="soundtrack-player">
-          <span class="soundtrack-sparkle soundtrack-sparkle-1">✦</span>
-          <span class="soundtrack-sparkle soundtrack-sparkle-2">✦</span>
-          <span class="soundtrack-sparkle soundtrack-sparkle-3">✦</span>
+  const savePlayerState = () => {
+    if (!audio) return;
+    try {
+      sessionStorage.setItem(playerStateKey, JSON.stringify({
+        track: currentTrack,
+        time: audio.currentTime || 0,
+        volume: audio.volume,
+        started: playerHasStarted,
+        wasPlaying: !audio.paused
+      }));
+    } catch (_) {
+      // The player still works if storage is unavailable.
+    }
+  };
 
-          <div class="now-playing">
-            <div class="soundtrack-orb" aria-hidden="true">
-              <span class="orb-ring orb-ring-one"></span>
-              <span class="orb-ring orb-ring-two"></span>
-              <span class="orb-star">✦</span>
-            </div>
+  const updateTrackUI = () => {
+    const track = tracks[currentTrack];
 
-            <p class="now-playing-label">✦ Now Playing ✦</p>
-            <h3 id="track-title">Welcome to My Little Sky</h3>
-            <p class="track-artist" id="track-artist">Selkie · Realm Soundtrack</p>
+    if (title) title.textContent = track.title;
+    if (artist) artist.textContent = track.artist;
+    if (miniTitle) miniTitle.textContent = track.title;
 
-            <div class="progress-wrap">
-              <span class="time-label" id="current-time">0:00</span>
-              <input
-                class="progress-slider"
-                id="track-progress"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-                step="0.1"
-                aria-label="Track progress"
-              >
-              <span class="time-label" id="track-duration">4:38</span>
-            </div>
+    if (playPause) {
+      playPause.setAttribute('aria-label', `Play ${track.title}`);
+    }
 
-            <div class="player-controls">
-              <button class="control-button" id="previous-track" type="button" aria-label="Previous track">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 20 9 12l10-8v16ZM5 19V5"/></svg>
-              </button>
+    if (player) {
+      player.classList.remove('theme-sky', 'theme-shape', 'theme-crystal');
+      player.classList.add(track.theme);
+    }
 
-              <button class="play-button" id="play-pause" type="button" aria-label="Play Welcome to My Little Sky">
-                <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
-                <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
-              </button>
+    trackButtons.forEach((button, buttonIndex) => {
+      const isActive = buttonIndex === currentTrack;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+  };
 
-              <button class="control-button" id="next-track" type="button" aria-label="Next track">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 4 10 8-10 8V4ZM19 5v14"/></svg>
-              </button>
-            </div>
+  const updatePlayState = () => {
+    if (!audio) return;
 
-            <div class="volume-control">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5ZM15 9a4 4 0 0 1 0 6M17.5 6.5a8 8 0 0 1 0 11"/></svg>
-              <input
-                id="volume-slider"
-                type="range"
-                min="0"
-                max="1"
-                value="0.8"
-                step="0.01"
-                aria-label="Volume"
-              >
-            </div>
-          </div>
+    const isPlaying = !audio.paused;
+    const trackTitle = tracks[currentTrack].title;
 
-          <div class="track-list" aria-label="Realm soundtrack playlist">
-            <p class="track-list-label">Choose a song</p>
+    if (playPause) {
+      playPause.classList.toggle('is-playing', isPlaying);
+      playPause.setAttribute('aria-label', `${isPlaying ? 'Pause' : 'Play'} ${trackTitle}`);
+    }
 
-            <button class="track-item is-active" type="button" data-track="0">
-              <span class="track-number">01</span>
-              <span class="track-copy">
-                <strong>Welcome to My Little Sky</strong>
-                <small>Original realm theme</small>
-              </span>
-              <span class="track-length">4:38</span>
-            </button>
+    if (miniPlayPause) {
+      miniPlayPause.classList.toggle('is-playing', isPlaying);
+      miniPlayPause.setAttribute('aria-label', `${isPlaying ? 'Pause' : 'Play'} ${trackTitle}`);
+    }
 
-            <button class="track-item" type="button" data-track="1">
-              <span class="track-number">02</span>
-              <span class="track-copy">
-                <strong>Every Shape Is Me</strong>
-                <small>Shifter identity song</small>
-              </span>
-              <span class="track-length">4:09</span>
-            </button>
+    if (playerHasStarted) revealMiniPlayer();
+    savePlayerState();
+  };
 
-            <button class="track-item" type="button" data-track="2">
-              <span class="track-number">03</span>
-              <span class="track-copy">
-                <strong>CRYSTAL ATTACK</strong>
-                <small>Crystal-powered battle theme</small>
-              </span>
-              <span class="track-length">3:39</span>
-            </button>
+  const loadTrack = (index, shouldPlay = false, resumeTime = 0) => {
+    if (!audio) return;
 
-            <p class="soundtrack-note">Music begins only when you press play.</p>
-          </div>
-        </div>
+    currentTrack = (index + tracks.length) % tracks.length;
+    const track = tracks[currentTrack];
 
-        <audio id="realm-audio" preload="metadata"></audio>
-      </div>
-    </section>
+    audio.src = track.src;
+    audio.load();
+    updateTrackUI();
 
-    <section class="explore-section" id="realm">
-      <div class="section-inner">
-        <div class="section-heading explore-heading">
-          <span>✦</span>
-          <h2>Explore the Realm</h2>
-          <span>✦</span>
-        </div>
+    if (progress) progress.value = 0;
+    if (currentTimeLabel) currentTimeLabel.textContent = '0:00';
 
-        <div class="explore-grid explore-grid-three">
-          <a class="explore-card" href="index.html?page=about">
-            <div class="card-icon icon-purple">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V9l3-3 4 4 4-4 3 3v12M9 21v-5h6v5M8 6V3M16 6V3"/></svg>
-            </div>
-            <h3>Enter Selkie's Realm</h3>
-            <p>Meet Selkie and discover the world behind the Shifter.</p>
-          </a>
+    const setResumeTime = () => {
+      if (resumeTime > 0 && Number.isFinite(audio.duration)) {
+        audio.currentTime = Math.min(resumeTime, Math.max(audio.duration - 0.25, 0));
+      }
+      audio.removeEventListener('loadedmetadata', setResumeTime);
+    };
 
-          <a class="explore-card" href="index.html?page=gallery">
-            <div class="card-icon icon-blue">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21.5zM20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5a2.5 2.5 0 0 1 2.5 2.5z"/></svg>
-            </div>
-            <h3>Forms &amp; References</h3>
-            <p>Character designs, reference sheets, forms, and realm residents.</p>
-          </a>
+    if (resumeTime > 0) {
+      audio.addEventListener('loadedmetadata', setResumeTime);
+    }
 
-          <a class="explore-card" href="index.html#magic">
-            <div class="card-icon icon-gold">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l5 5L8 21H3v-5zM14 5l5 5M6 3v4M4 5h4M18 16v5M15.5 18.5h5"/></svg>
-            </div>
-            <h3>Magic &amp; Creations</h3>
-            <p>Artwork, stories, music, projects, and things made with a little magic.</p>
-          </a>
-        </div>
+    if (shouldPlay) {
+      playerHasStarted = true;
+      revealMiniPlayer();
+      audio.play().catch(() => updatePlayState());
+    }
+  };
 
-        <div class="explore-grid explore-grid-three">
-          <a class="explore-card" href="index.html?page=commissions">
-            <div class="card-icon icon-pink">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4z"/></svg>
-            </div>
-            <h3>Summon a Commission</h3>
-            <p>Commission information, examples, and availability.</p>
-          </a>
+  const togglePlayback = () => {
+    if (!audio) return;
 
-          <a class="explore-card" href="index.html?page=portfolio">
-            <div class="card-icon icon-purple">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h10l4 4v12.5A1.5 1.5 0 0 1 18.5 21h-13A1.5 1.5 0 0 1 4 19.5ZM14 3v5h5M8 13h8M8 17h5"/></svg>
-            </div>
-            <h3>Portfolio</h3>
-            <p>A polished collection of artwork, designs, and magical creations.</p>
-          </a>
+    playerHasStarted = true;
+    revealMiniPlayer();
 
-          <a class="explore-card" href="index.html?page=links">
-            <div class="card-icon icon-mint">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-            </div>
-            <h3>Realms Beyond</h3>
-            <p>Find me across the other corners of the internet.</p>
-          </a>
-        </div>
-      </div>
-    </section>
+    if (audio.paused) {
+      audio.play().catch(() => updatePlayState());
+    } else {
+      audio.pause();
+    }
+  };
 
-    <section class="magic-section" id="magic">
-      <div class="section-inner">
-        <div class="magic-card">
-          <span class="magic-sparkle magic-sparkle-1">✦</span>
-          <span class="magic-sparkle magic-sparkle-2">✦</span>
-          <span class="magic-sparkle magic-sparkle-3">✦</span>
+  playPause?.addEventListener('click', togglePlayback);
+  miniPlayPause?.addEventListener('click', togglePlayback);
+  previousTrack?.addEventListener('click', () => loadTrack(currentTrack - 1, true));
+  nextTrack?.addEventListener('click', () => loadTrack(currentTrack + 1, true));
+  miniNextTrack?.addEventListener('click', () => loadTrack(currentTrack + 1, true));
 
-          <div class="magic-content">
-            <div class="section-heading">
-              <span>✦</span>
-              <h2>Magic &amp; Creations</h2>
-              <span>✦</span>
-            </div>
-            <p>
-              This part of the realm is still taking shape. Soon it will be
-              filled with artwork, original characters, stories, games,
-              and other magical projects.
-            </p>
-            <a class="magic-pill" href="index.html#magic">
-              <span>✦</span>
-              More magic is gathering...
-              <span>✦</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    </div>
+  trackButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      loadTrack(Number(button.dataset.track), true);
+    });
+  });
 
-    <div class="route-view page-route" id="page-view" data-route="page" hidden>
-      <div class="page-loading">✦ Gathering this part of the realm... ✦</div>
-    </div>
-  </main>
+  audio?.addEventListener('play', updatePlayState);
+  audio?.addEventListener('pause', updatePlayState);
+  audio?.addEventListener('ended', () => loadTrack(currentTrack + 1, true));
 
+  audio?.addEventListener('loadedmetadata', () => {
+    if (durationLabel) durationLabel.textContent = formatTime(audio.duration);
+  });
 
-  <aside class="persistent-player" id="persistent-player" aria-label="Persistent realm soundtrack player" aria-hidden="true">
-    <div class="persistent-player-copy">
-      <span class="persistent-player-label">✦ Realm Soundtrack</span>
-      <strong id="mini-track-title">Welcome to My Little Sky</strong>
-    </div>
+  audio?.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
 
-    <div class="persistent-player-controls">
-      <button class="mini-control-button" id="mini-play-pause" type="button" aria-label="Play current track">
-        <svg class="mini-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
-        <svg class="mini-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
-      </button>
-      <button class="mini-control-button mini-next-button" id="mini-next-track" type="button" aria-label="Next track">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 4 10 8-10 8V4ZM19 5v14"/></svg>
-      </button>
-    </div>
-  </aside>
+    if (progress) progress.value = (audio.currentTime / audio.duration) * 100;
+    if (currentTimeLabel) currentTimeLabel.textContent = formatTime(audio.currentTime);
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p class="footer-title">✦ Made with magic by Selkie ✦</p>
-      <p class="footer-subtitle">Welcome to my little realm.</p>
-    </div>
-  </footer>
+    savePlayerState();
+  });
 
-<script src="site.js?v=portfolio2"></script>
-</body>
-</html>
+  progress?.addEventListener('input', () => {
+    if (!audio?.duration) return;
+    audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+  });
+
+  volume?.addEventListener('input', () => {
+    if (!audio) return;
+    audio.volume = Number(volume.value);
+    savePlayerState();
+  });
+
+  let restoredState = null;
+
+  try {
+    restoredState = JSON.parse(sessionStorage.getItem(playerStateKey) || 'null');
+  } catch (_) {
+    restoredState = null;
+  }
+
+  if (audio) {
+    const restoredVolume = Number(restoredState?.volume);
+    audio.volume = Number.isFinite(restoredVolume) ? restoredVolume : Number(volume?.value ?? 0.8);
+
+    if (volume) volume.value = String(audio.volume);
+
+    const restoredTrack = Number.isInteger(restoredState?.track) ? restoredState.track : 0;
+    const restoredTime = Number(restoredState?.time) || 0;
+
+    playerHasStarted = Boolean(restoredState?.started);
+
+    loadTrack(restoredTrack, false, restoredTime);
+
+    if (playerHasStarted) revealMiniPlayer();
+  }
+
+  // Persistent page navigation: swap page content without reloading the shell.
+  const homeView = document.getElementById('home-view');
+  const pageView = document.getElementById('page-view');
+
+  const validRoutes = new Set(['about', 'gallery', 'portfolio', 'commissions', 'links']);
+
+  const routeTitles = {
+    about: "Enter the Realm ✦ Selkie's Realm",
+    gallery: "Forms & References ✦ Selkie's Realm",
+    portfolio: "Portfolio ✦ Selkie's Realm",
+    commissions: "Commissions ✦ Selkie's Realm",
+    links: "Realms Beyond ✦ Selkie's Realm"
+  };
+
+  const showHome = (hash = '') => {
+    if (!homeView || !pageView) return;
+
+    homeView.hidden = false;
+    homeView.classList.add('is-active');
+
+    pageView.hidden = true;
+    pageView.classList.remove('is-active');
+
+    document.title = "Selkie's Realm ✦";
+
+    requestAnimationFrame(() => {
+      if (hash) {
+        const target = document.querySelector(hash);
+        target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  };
+
+  const showRoute = async (route) => {
+    if (!homeView || !pageView || !validRoutes.has(route)) {
+      showHome();
+      return;
+    }
+
+    homeView.hidden = true;
+    homeView.classList.remove('is-active');
+
+    pageView.hidden = false;
+    pageView.classList.add('is-active');
+
+    pageView.innerHTML = '<div class="page-loading">✦ Gathering this part of the realm... ✦</div>';
+    document.title = routeTitles[route] || "Selkie's Realm ✦";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    try {
+      const response = await fetch(`pages/${route}.html?v=${Date.now()}`, {
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error(`Could not load ${route}`);
+      }
+
+      pageView.innerHTML = await response.text();
+    } catch (error) {
+      pageView.innerHTML = `
+        <section class="content-page">
+          <p class="page-kicker">✦ The path flickered ✦</p>
+          <h1>This part of the realm could not be loaded.</h1>
+          <p>Please return home and try again.</p>
+          <a class="button button-primary" href="index.html">Return Home</a>
+        </section>
+      `;
+      console.error(error);
+    }
+  };
+
+  const renderLocation = async (url, push = false) => {
+    const route = url.searchParams.get('page');
+
+    if (push) {
+      history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
+    }
+
+    if (route && validRoutes.has(route)) {
+      await showRoute(route);
+      return;
+    }
+
+    showHome(url.hash);
+  };
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+
+    if (!link) return;
+    if (link.target === '_blank' || link.hasAttribute('download')) return;
+
+    const url = new URL(link.href, window.location.href);
+
+    if (url.origin !== window.location.origin) return;
+
+    const isShellRoute =
+      url.pathname.endsWith('/index.html') ||
+      url.pathname === '/' ||
+      url.pathname.endsWith('/');
+
+    if (!isShellRoute) return;
+
+    event.preventDefault();
+    renderLocation(url, true);
+  });
+
+  window.addEventListener('popstate', () => {
+    renderLocation(new URL(window.location.href), false);
+  });
+
+  window.addEventListener('beforeunload', savePlayerState);
+
+  renderLocation(new URL(window.location.href), false);
+})();
