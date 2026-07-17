@@ -2145,24 +2145,3 @@ span:last-child {
   font-size: 0.9rem;
   line-height: 1.5;
 }
-/* ========================================
-   FIX PAGE TITLE UNDER STICKY NAV
-======================================== */
-
-.page-route {
-  padding-top: 120px;
-}
-
-.content-page {
-  padding-top: 110px;
-}
-
-@media (max-width: 767px) {
-  .page-route {
-    padding-top: 96px;
-  }
-
-  .content-page {
-    padding-top: 88px;
-  }
-}
