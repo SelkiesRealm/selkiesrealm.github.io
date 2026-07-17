@@ -239,10 +239,11 @@
   const homeView = document.getElementById('home-view');
   const pageView = document.getElementById('page-view');
   const routeCache = new Map();
-  const validRoutes = new Set(['about', 'gallery', 'commissions', 'links']);
+  const validRoutes = new Set(['about', 'gallery', 'portfolio', 'commissions', 'links']);
   const routeTitles = {
     about: "Enter the Realm ✦ Selkie's Realm",
     gallery: "Forms & References ✦ Selkie's Realm",
+    portfolio: "Portfolio ✦ Selkie's Realm",
     commissions: "Commissions ✦ Selkie's Realm",
     links: "Realms Beyond ✦ Selkie's Realm"
   };
@@ -280,14 +281,9 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     try {
-      let markup = routeCache.get(route);
-      if (!markup) {
-        const response = await fetch(`pages/${route}.html`, { cache: 'no-cache' });
-        if (!response.ok) throw new Error(`Could not load ${route}`);
-        markup = await response.text();
-        routeCache.set(route, markup);
-      }
-      pageView.innerHTML = markup;
+      const response = await fetch(`pages/${route}.html?v=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Could not load ${route}`);
+      pageView.innerHTML = await response.text();
     } catch (error) {
       pageView.innerHTML = `
         <section class="content-page">
