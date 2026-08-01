@@ -2527,3 +2527,77 @@ span:last-child {
     min-height: 132px;
   }
 }
+/* ========================================
+   SIMPLE COMMISSION TOS DROPDOWNS
+======================================== */
+
+.tos-panel {
+  margin-top: 34px;
+}
+
+.tos-panel h2 {
+  margin: 0 0 16px;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+}
+
+.tos-dropdown {
+  margin-top: 12px;
+
+  border: 1px solid hsl(270 25% 88% / 0.9);
+  border-radius: 18px;
+
+  background: hsl(0 0% 100% / 0.62);
+
+  box-shadow: var(--shadow-card);
+
+  text-align: left;
+}
+
+.tos-dropdown summary {
+  padding: 18px 22px;
+
+  color: var(--primary);
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.tos-dropdown summary::marker {
+  color: var(--realm-gold);
+}
+
+.tos-dropdown h3 {
+  margin: 18px 22px 10px;
+
+  color: var(--foreground);
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.35rem;
+}
+
+.tos-dropdown p {
+  margin: 0 22px 16px;
+
+  color: hsl(262 42% 22% / 0.68);
+
+  line-height: 1.7;
+}
+
+.tos-dropdown ul {
+  margin: 0 22px 18px;
+  padding-left: 1.25rem;
+}
+
+.tos-dropdown li {
+  margin: 7px 0;
+
+  color: hsl(262 42% 22% / 0.7);
+
+  line-height: 1.6;
+}
