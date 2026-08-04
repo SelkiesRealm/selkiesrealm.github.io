@@ -2601,3 +2601,16 @@ span:last-child {
 
   line-height: 1.6;
 }
+/* ========================================
+   ROUTED SOUNDTRACK PAGE
+======================================== */
+
+.soundtrack-page {
+  padding-top: clamp(24px, 5vw, 56px);
+  padding-bottom: clamp(64px, 8vw, 110px);
+}
+
+.soundtrack-page .section-inner {
+  width: min(1040px, 100%);
+}
+
