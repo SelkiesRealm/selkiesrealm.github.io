@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=residents">
+  <link rel="stylesheet" href="styles.css?v=soundtrack-page">
 </head>
 <body>
   <header class="site-header">
@@ -27,7 +27,7 @@
         <a href="index.html?page=gallery">Forms &amp; References</a>
         <a href="index.html?page=portfolio">Portfolio</a>
         <a href="index.html?page=soundtrack">Realm Soundtrack</a>
-        <a href="index.html?page=characters">Magic &amp; Creations</a>
+        <a href="index.html#magic">Magic &amp; Creations</a>
         <a href="index.html?page=commissions">Commissions</a>
         <a href="index.html?page=links">Realms Beyond</a>
       </div>
@@ -43,7 +43,7 @@
       <a href="index.html?page=gallery">Forms &amp; References</a>
       <a href="index.html?page=portfolio">Portfolio</a>
       <a href="index.html?page=soundtrack">Realm Soundtrack</a>
-      <a href="index.html?page=characters">Magic &amp; Creations</a>
+      <a href="index.html#magic">Magic &amp; Creations</a>
       <a href="index.html?page=commissions">Commissions</a>
       <a href="index.html?page=links">Realms Beyond</a>
     </div>
@@ -69,7 +69,7 @@
           </p>
           <div class="hero-buttons">
             <a class="button button-primary" href="index.html?page=about">Enter the Realm</a>
-            <a class="button button-outline" href="index.html?page=characters">Meet the Residents</a>
+            <a class="button button-outline" href="index.html?page=gallery">Meet the Residents</a>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@
             <p>Character designs, reference sheets, forms, and realm residents.</p>
           </a>
 
-          <a class="explore-card" href="index.html?page=characters">
+          <a class="explore-card" href="index.html#magic">
             <div class="card-icon icon-gold">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l5 5L8 21H3v-5zM14 5l5 5M6 3v4M4 5h4M18 16v5M15.5 18.5h5"/></svg>
             </div>
@@ -152,71 +152,34 @@
       </div>
     </section>
 
-    <section class="resident-preview-section" id="residents">
+    <section class="magic-section" id="magic">
       <div class="section-inner">
-        <div class="section-heading">
-          <span>✦</span>
-          <h2>Realm Residents</h2>
-          <span>✦</span>
+        <div class="magic-card">
+          <span class="magic-sparkle magic-sparkle-1">✦</span>
+          <span class="magic-sparkle magic-sparkle-2">✦</span>
+          <span class="magic-sparkle magic-sparkle-3">✦</span>
+
+          <div class="magic-content">
+            <div class="section-heading">
+              <span>✦</span>
+              <h2>Magic &amp; Creations</h2>
+              <span>✦</span>
+            </div>
+            <p>
+              This part of the realm is still taking shape. Soon it will be
+              filled with artwork, original characters, stories, games,
+              and other magical projects.
+            </p>
+            <a class="magic-pill" href="index.html#magic">
+              <span>✦</span>
+              More magic is gathering...
+              <span>✦</span>
+            </a>
+          </div>
         </div>
-
-        <p class="resident-preview-intro">
-          A little character archive for Selkie, Nova, Bibble, and the other
-          residents who live inside the realm.
-        </p>
-
-        <div class="resident-card-grid resident-card-grid-preview">
-
-          <a class="resident-card" href="index.html?page=selkie">
-            <div class="resident-card-image">
-              <img src="assets/images/characters/selkie.png" alt="Selkie" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
-              <div class="resident-card-placeholder" hidden>Selkie</div>
-              <span class="resident-card-badge">Main OC</span>
-            </div>
-
-            <div class="resident-card-body">
-              <strong>Selkie</strong>
-              <small>/ selkie</small>
-              <p>Shapeshifter, artist mascot, and heart of the realm.</p>
-            </div>
-          </a>
-
-          <a class="resident-card" href="index.html?page=nova">
-            <div class="resident-card-image">
-              <img src="assets/images/characters/nova.png" alt="Nova" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
-              <div class="resident-card-placeholder" hidden>Nova</div>
-              <span class="resident-card-badge">Alien OC</span>
-            </div>
-
-            <div class="resident-card-body">
-              <strong>Nova</strong>
-              <small>/ nova</small>
-              <p>Starry alien girl with bright colors and big magical energy.</p>
-            </div>
-          </a>
-
-          <a class="resident-card" href="index.html?page=bibble">
-            <div class="resident-card-image">
-              <img src="assets/images/characters/bibble.png" alt="Bibble" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
-              <div class="resident-card-placeholder" hidden>Bibble</div>
-              <span class="resident-card-badge">Mascot</span>
-            </div>
-
-            <div class="resident-card-body">
-              <strong>Bibble</strong>
-              <small>/ bibble</small>
-              <p>A cute little mascot resident from Selkie’s Realm.</p>
-            </div>
-          </a>
-
-        </div>
-
-        <a class="button button-primary resident-view-all" href="index.html?page=characters">
-          View All Residents
-        </a>
       </div>
     </section>
-</div>
+    </div>
 
     <div class="route-view page-route" id="page-view" data-route="page" hidden>
       <div class="page-loading">✦ Gathering this part of the realm... ✦</div>
@@ -255,6 +218,6 @@
     </div>
   </footer>
 
-<script src="site.js?v=residents"></script>
+<script src="site.js?v=soundtrack-page"></script>
 </body>
 </html>
