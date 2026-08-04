@@ -245,7 +245,7 @@
   const homeView = document.getElementById('home-view');
   const pageView = document.getElementById('page-view');
 
-  const validRoutes = new Set(['about', 'gallery', 'portfolio', 'commissions', 'links']);
+const validRoutes = new Set(['about', 'gallery', 'portfolio', 'soundtrack', 'commissions', 'links']);
 
   const routeTitles = {
     about: "Enter the Realm ✦ Selkie's Realm",
