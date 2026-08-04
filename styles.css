@@ -2614,3 +2614,107 @@ span:last-child {
   width: min(1040px, 100%);
 }
 
+/* ========================================
+   COLLAPSIBLE MINI SOUNDTRACK PLAYER
+======================================== */
+
+.player-collapse-toggle {
+  flex: 0 0 auto;
+
+  width: 30px;
+  height: 30px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid hsl(262 52% 47% / 0.18);
+  border-radius: 50%;
+
+  background: hsl(0 0% 100% / 0.82);
+  color: var(--primary);
+
+  font-family: "Nunito", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.player-collapse-toggle:hover {
+  transform: translateY(-2px);
+  background: hsl(262 52% 47% / 0.08);
+  box-shadow: 0 8px 20px hsl(262 52% 47% / 0.16);
+}
+
+.player-closed-icon {
+  display: none;
+}
+
+.persistent-player {
+  overflow: hidden;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    width 0.25s ease,
+    padding 0.25s ease,
+    border-radius 0.25s ease,
+    gap 0.25s ease;
+}
+
+.persistent-player.is-collapsed {
+  width: 62px;
+  min-width: 62px;
+  height: 62px;
+
+  padding: 8px;
+  gap: 0;
+
+  justify-content: center;
+
+  border-radius: 50%;
+}
+
+.persistent-player.is-collapsed .persistent-player-copy,
+.persistent-player.is-collapsed .persistent-player-controls {
+  display: none;
+}
+
+.persistent-player.is-collapsed .player-collapse-toggle {
+  width: 46px;
+  height: 46px;
+
+  background: var(--primary);
+  color: white;
+
+  font-size: 1.35rem;
+}
+
+.persistent-player.is-collapsed .player-open-icon {
+  display: none;
+}
+
+.persistent-player.is-collapsed .player-closed-icon {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .persistent-player.is-collapsed {
+    right: 18px;
+    bottom: 18px;
+    width: 58px;
+    min-width: 58px;
+    height: 58px;
+  }
+
+  .persistent-player.is-collapsed .player-collapse-toggle {
+    width: 42px;
+    height: 42px;
+  }
+}
