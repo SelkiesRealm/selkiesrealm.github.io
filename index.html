@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=soundtrack-page">
 </head>
 <body>
   <header class="site-header">
@@ -26,7 +26,7 @@
         <a href="index.html?page=about">Enter the Realm</a>
         <a href="index.html?page=gallery">Forms &amp; References</a>
         <a href="index.html?page=portfolio">Portfolio</a>
-        <a href="index.html#soundtrack">Realm Soundtrack</a>
+        <a href="index.html?page=soundtrack">Realm Soundtrack</a>
         <a href="index.html#magic">Magic &amp; Creations</a>
         <a href="index.html?page=commissions">Commissions</a>
         <a href="index.html?page=links">Realms Beyond</a>
@@ -42,7 +42,7 @@
       <a href="index.html?page=about">Enter the Realm</a>
       <a href="index.html?page=gallery">Forms &amp; References</a>
       <a href="index.html?page=portfolio">Portfolio</a>
-      <a href="index.html#soundtrack">Realm Soundtrack</a>
+      <a href="index.html?page=soundtrack">Realm Soundtrack</a>
       <a href="index.html#magic">Magic &amp; Creations</a>
       <a href="index.html?page=commissions">Commissions</a>
       <a href="index.html?page=links">Realms Beyond</a>
@@ -87,116 +87,6 @@
           original characters, artwork, stories, projects, and all the magical
           things I create along the way.
         </p>
-      </div>
-    </section>
-
-    <section class="soundtrack-section" id="soundtrack">
-      <div class="section-inner">
-        <div class="section-heading soundtrack-heading">
-          <span>✦</span>
-          <h2>Realm Soundtrack</h2>
-          <span>✦</span>
-        </div>
-        <p class="soundtrack-intro">
-          Original songs from Selkie's Realm. Choose a track and let a little
-          piece of the realm play while you wander.
-        </p>
-
-        <div class="soundtrack-player theme-sky" id="soundtrack-player">
-          <span class="soundtrack-sparkle soundtrack-sparkle-1">✦</span>
-          <span class="soundtrack-sparkle soundtrack-sparkle-2">✦</span>
-          <span class="soundtrack-sparkle soundtrack-sparkle-3">✦</span>
-
-          <div class="now-playing">
-            <div class="soundtrack-orb" aria-hidden="true">
-              <span class="orb-ring orb-ring-one"></span>
-              <span class="orb-ring orb-ring-two"></span>
-              <span class="orb-star">✦</span>
-            </div>
-
-            <p class="now-playing-label">✦ Now Playing ✦</p>
-            <h3 id="track-title">Welcome to My Little Sky</h3>
-            <p class="track-artist" id="track-artist">Selkie · Realm Soundtrack</p>
-
-            <div class="progress-wrap">
-              <span class="time-label" id="current-time">0:00</span>
-              <input
-                class="progress-slider"
-                id="track-progress"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-                step="0.1"
-                aria-label="Track progress"
-              >
-              <span class="time-label" id="track-duration">4:38</span>
-            </div>
-
-            <div class="player-controls">
-              <button class="control-button" id="previous-track" type="button" aria-label="Previous track">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 20 9 12l10-8v16ZM5 19V5"/></svg>
-              </button>
-
-              <button class="play-button" id="play-pause" type="button" aria-label="Play Welcome to My Little Sky">
-                <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
-                <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
-              </button>
-
-              <button class="control-button" id="next-track" type="button" aria-label="Next track">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 4 10 8-10 8V4ZM19 5v14"/></svg>
-              </button>
-            </div>
-
-            <div class="volume-control">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5ZM15 9a4 4 0 0 1 0 6M17.5 6.5a8 8 0 0 1 0 11"/></svg>
-              <input
-                id="volume-slider"
-                type="range"
-                min="0"
-                max="1"
-                value="0.8"
-                step="0.01"
-                aria-label="Volume"
-              >
-            </div>
-          </div>
-
-          <div class="track-list" aria-label="Realm soundtrack playlist">
-            <p class="track-list-label">Choose a song</p>
-
-            <button class="track-item is-active" type="button" data-track="0">
-              <span class="track-number">01</span>
-              <span class="track-copy">
-                <strong>Welcome to My Little Sky</strong>
-                <small>Original realm theme</small>
-              </span>
-              <span class="track-length">4:38</span>
-            </button>
-
-            <button class="track-item" type="button" data-track="1">
-              <span class="track-number">02</span>
-              <span class="track-copy">
-                <strong>Every Shape Is Me</strong>
-                <small>Shifter identity song</small>
-              </span>
-              <span class="track-length">4:09</span>
-            </button>
-
-            <button class="track-item" type="button" data-track="2">
-              <span class="track-number">03</span>
-              <span class="track-copy">
-                <strong>CRYSTAL ATTACK</strong>
-                <small>Crystal-powered battle theme</small>
-              </span>
-              <span class="track-length">3:39</span>
-            </button>
-
-            <p class="soundtrack-note">Music begins only when you press play.</p>
-          </div>
-        </div>
-
-        <audio id="realm-audio" preload="metadata"></audio>
       </div>
     </section>
 
@@ -297,6 +187,8 @@
   </main>
 
 
+  <audio id="realm-audio" preload="metadata"></audio>
+
   <aside class="persistent-player" id="persistent-player" aria-label="Persistent realm soundtrack player" aria-hidden="true">
     <div class="persistent-player-copy">
       <span class="persistent-player-label">✦ Realm Soundtrack</span>
@@ -321,6 +213,6 @@
     </div>
   </footer>
 
-<script src="site.js?v=fixed3"></script>
+<script src="site.js?v=soundtrack-page"></script>
 </body>
 </html>
