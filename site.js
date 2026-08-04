@@ -57,10 +57,12 @@
   const miniTitle = document.getElementById('mini-track-title');
   const miniPlayPause = document.getElementById('mini-play-pause');
   const miniNextTrack = document.getElementById('mini-next-track');
+  const miniCollapseToggle = document.getElementById('player-collapse-toggle');
 
   let currentTrack = 0;
   let playerHasStarted = false;
   const playerStateKey = 'selkie-realm-player-v2';
+  const playerCollapsedKey = 'selkie-realm-player-collapsed-v1';
 
   const formatTime = (seconds) => {
     if (!Number.isFinite(seconds)) return '0:00';
@@ -74,6 +76,17 @@
     miniPlayer.classList.add('is-visible');
     miniPlayer.setAttribute('aria-hidden', 'false');
     document.body.classList.add('music-active');
+  };
+
+  const applyMiniPlayerCollapsed = (isCollapsed) => {
+    if (!miniPlayer || !miniCollapseToggle) return;
+
+    miniPlayer.classList.toggle('is-collapsed', isCollapsed);
+    miniCollapseToggle.setAttribute('aria-expanded', String(!isCollapsed));
+    miniCollapseToggle.setAttribute(
+      'aria-label',
+      isCollapsed ? 'Open soundtrack player' : 'Collapse soundtrack player'
+    );
   };
 
   const savePlayerState = () => {
@@ -241,6 +254,17 @@
   miniPlayPause?.addEventListener('click', togglePlayback);
   miniNextTrack?.addEventListener('click', () => loadTrack(currentTrack + 1, true));
 
+  miniCollapseToggle?.addEventListener('click', () => {
+    const shouldCollapse = !miniPlayer?.classList.contains('is-collapsed');
+    applyMiniPlayerCollapsed(shouldCollapse);
+
+    try {
+      sessionStorage.setItem(playerCollapsedKey, String(shouldCollapse));
+    } catch (_) {
+      // The player still works if storage is unavailable.
+    }
+  });
+
   audio?.addEventListener('play', updatePlayState);
   audio?.addEventListener('pause', updatePlayState);
   audio?.addEventListener('ended', () => loadTrack(currentTrack + 1, true));
@@ -251,6 +275,15 @@
   });
 
   let restoredState = null;
+  let restoredCollapsedState = false;
+
+  try {
+    restoredCollapsedState = sessionStorage.getItem(playerCollapsedKey) === 'true';
+  } catch (_) {
+    restoredCollapsedState = false;
+  }
+
+  applyMiniPlayerCollapsed(restoredCollapsedState);
 
   try {
     restoredState = JSON.parse(sessionStorage.getItem(playerStateKey) || 'null');
