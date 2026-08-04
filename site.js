@@ -309,13 +309,17 @@
   const homeView = document.getElementById('home-view');
   const pageView = document.getElementById('page-view');
 
-  const validRoutes = new Set(['about', 'gallery', 'portfolio', 'soundtrack', 'commissions', 'links']);
+  const validRoutes = new Set(['about', 'gallery', 'portfolio', 'soundtrack', 'characters', 'selkie', 'nova', 'bibble', 'commissions', 'links']);
 
   const routeTitles = {
     about: "Enter the Realm ✦ Selkie's Realm",
     gallery: "Forms & References ✦ Selkie's Realm",
     portfolio: "Portfolio ✦ Selkie's Realm",
     soundtrack: "Realm Soundtrack ✦ Selkie's Realm",
+    characters: "Realm Residents ✦ Selkie's Realm",
+    selkie: "Selkie ✦ Selkie's Realm",
+    nova: "Nova ✦ Selkie's Realm",
+    bibble: "Bibble ✦ Selkie's Realm",
     commissions: "Commissions ✦ Selkie's Realm",
     links: "Realms Beyond ✦ Selkie's Realm"
   };
